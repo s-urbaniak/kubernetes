@@ -588,8 +588,8 @@ func ClusterRoleBindings() []rbacv1.ClusterRoleBinding {
 		rbacv1helpers.NewClusterBinding("system:volume-scheduler").Users(user.KubeScheduler).BindingOrDie(),
 
 		// TODO: move to kcp policy
-		clusterRoleBindingCustomName(rbacv1helpers.NewClusterBinding("edit").Groups("system:kcp:workspace:edit").BindingOrDie(), "system:kcp:workspace:edit"),
-		clusterRoleBindingCustomName(rbacv1helpers.NewClusterBinding("view").Groups("system:kcp:workspace:view").BindingOrDie(), "system:kcp:workspace:view"),
+		clusterRoleBindingCustomName(rbacv1helpers.NewClusterBinding("system:aggregate-to-edit").Groups("system:kcp:workspace:edit").BindingOrDie(), "system:kcp:workspace:edit"),
+		clusterRoleBindingCustomName(rbacv1helpers.NewClusterBinding("system:aggregate-to-view").Groups("system:kcp:workspace:view").BindingOrDie(), "system:kcp:workspace:view"),
 
 		// This default binding of the system:node role to the system:nodes group is deprecated in 1.7 with the availability of the Node authorizer.
 		// This leaves the binding, but with an empty set of subjects, so that tightening reconciliation can remove the subject.
